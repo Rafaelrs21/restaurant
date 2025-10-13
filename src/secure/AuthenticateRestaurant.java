@@ -2,6 +2,7 @@ package secure;
 
 import entities.Restaurant;
 import repository.RestaurantRepository;
+import repository.RestaurantSection;
 
 import java.util.Scanner;
 
@@ -32,6 +33,7 @@ public class AuthenticateRestaurant {
     public Restaurant logRestaurant(String name, String password) {
         if (repository.autenticar(name, password)) {
             Restaurant restaurant = repository.searchRestaurant(name);
+            RestaurantSection.setRestaurantLog(restaurant);
             System.out.println("Login successful! Welcome, " + restaurant.getName() + ".");
             return restaurant;
         } else {
